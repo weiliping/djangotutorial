@@ -1,0 +1,6 @@
+<h1>Persons</h1>
+<ul>
+{% for p in persons.all %}
+    <li>{{ p.first_name }}, {{ p.last_name }}</li>
+{% endfor %}
+</ul>
