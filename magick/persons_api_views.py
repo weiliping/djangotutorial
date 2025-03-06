@@ -6,10 +6,9 @@ from .models import Person
 from .serializers import PersonSerializer
 
 class PersonView(APIView):
-    def get(self, request, *args, **kwargs):
-        print(request.data) 
-        result = Person.objects.all()  
-        serializers = PersonSerializer(result, many=True)  
+    def get(self, request):
+        result = Person.objects.get(id=request.GET.get('id')) 
+        serializers = PersonSerializer(result)  
         return Response({'status': 'success', "persons":serializers.data}, status=200)  
   
     def post(self, request):
