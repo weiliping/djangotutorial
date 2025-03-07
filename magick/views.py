@@ -5,8 +5,8 @@ from .models import Person
 # Create your views here.
 
 def index(request):
-    p = Person.objects.create(first_name="John1", last_name="Doe1")
-    p.save()
+    # p = Person.objects.create(first_name="John1", last_name="Doe1")
+    # p.save()
     persons = Person.objects.all()
     context = {
         'persons': persons
