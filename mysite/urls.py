@@ -16,9 +16,20 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import include, path
+from rest_framework import routers
+from todo import views, home_page_views, logout_views
+from rest_framework_simplejwt import views as jwt_views
+
+router = routers.DefaultRouter()
+router.register(r'todos', views.TodoView, 'todo')
 
 urlpatterns = [
     path("magick/", include("magick.urls")),
     path('accounts/', include('django.contrib.auth.urls')),
     path('admin/', admin.site.urls),
+    path('api/', include(router.urls)),
+    path('home/', home_page_views.HomeView.as_view(), name ='home'),
+    path('logout/', logout_views.LogoutView.as_view(), name ='logout'),
+    path('token/', jwt_views.TokenObtainPairView.as_view(),  name ='token_obtain_pair'),
+    path('token/refresh/', jwt_views.TokenRefreshView.as_view(), name ='token_refresh')
 ]

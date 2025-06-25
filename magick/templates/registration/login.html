@@ -1,17 +1,26 @@
-
+<!DOCTYPE html>
+<html>
+<head>
+  <title>{% block title %}{% endblock %}</title>
+  {% load bootstrap5 %}
+  {% bootstrap_css %}
+  {% bootstrap_javascript %}
+  {% load static %}
+  <link rel="stylesheet" href="{% static 'css/app.css' %}">
+</head>
+<body class="d-flex align-items-center py-4 bg-body-tertiary">
 {% block content %}
+<main class="form-signin w-100 m-auto">
   <form method="post" action="{% url 'login' %}">
     {% csrf_token %}
-    <table>
-
-      <tr style="display: block;height: 120px;width: 100%;">
-        <td>{{ form.username.label_tag }}</td>
-        <td>{{ form.username }}</td>
-      </tr>
-      <tr>
-        <td>{{ form.password.label_tag }}</td>
-        <td>{{ form.password }}</td>
-      </tr>
+    <div class="row g-3 align-items-center">
+      <label for="id_username">{{ form.username.label }}:</label>
+        {{ form.username }}
+    </div>
+    <div class="row g-3 align-items-center">
+      <label for="id_password">{{ form.password.label }}:</label>
+      {{ form.password }}
+    </div>
     </table>
     <input type="submit" value="login">
     <input type="hidden" name="next" value="{{ next }}">
@@ -19,5 +28,7 @@
 
   {# Assumes you set up the password_reset view in your URLconf #}
   <p><a href="{% url 'password_reset' %}">Lost password?</a></p>
-
-{% endblock %}
+  {% endblock %}
+</main>
+</body>
+</html>
