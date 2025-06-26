@@ -28,8 +28,8 @@ urlpatterns = [
     path('accounts/', include('django.contrib.auth.urls')),
     path('admin/', admin.site.urls),
     path('api/', include(router.urls)),
-    path('home/', home_page_views.HomeView.as_view(), name ='home'),
-    path('logout/', logout_views.LogoutView.as_view(), name ='logout'),
-    path('token/', jwt_views.TokenObtainPairView.as_view(),  name ='token_obtain_pair'),
-    path('token/refresh/', jwt_views.TokenRefreshView.as_view(), name ='token_refresh')
+    path('home/', home_page_views.HomeView.as_view(), name='home'),
+    path('logout/', logout_views.LogoutView.as_view(), name='logout'),
+    path('token/', jwt_views.TokenObtainPairView.as_view(), name='token_obtain_pair'),
+    path('token/refresh/', jwt_views.TokenRefreshView.as_view(), name='token_refresh')
 ]
